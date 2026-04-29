@@ -71,11 +71,12 @@ def summarize(start_date, end_date, category=None):
         cols = [d[0] for d in cur.description]
         return [dict(zip(cols, r)) for r in cur.fetchall()]
 
-@mcp.resource("categories", mime_type="application/json")
+@mcp.resource('resource://categories', mime_type="application/json")
 def categories():
     # Read fresh each time so you can edit the file without restarting
     with open(CATEGORIES_PATH, "r", encoding="utf-8") as f:
         return f.read()
 
 if __name__ == "__main__":
-    mcp.run(transport='streamable-http', host='127.0.0.1', port=8001)
+    mcp.run(transport='streamable-http', host='127.0.0.1', port=8002)
+
